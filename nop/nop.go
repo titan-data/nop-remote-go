@@ -6,7 +6,7 @@ package nop
 import (
 	"errors"
 	"fmt"
-	"github.com/titan-data/remote-sdk-go/pkg/remote"
+	"github.com/titan-data/remote-sdk-go/remote"
 	"net/url"
 	"reflect"
 )
@@ -18,7 +18,7 @@ func (n nopRemote) Type() string {
 	return "nop"
 }
 
-func (n nopRemote) FromURL(url url.URL, additionalProperties map[string]string) (map[string]interface{}, error) {
+func (n nopRemote) FromURL(url *url.URL, additionalProperties map[string]string) (map[string]interface{}, error) {
 	// nop remotes can only be "nop", which means everything other than "path" must be empty
 	if url.Scheme != "" || url.Host != "" || url.User != nil || url.Path != "nop" {
 		return nil, errors.New("malformed remote")

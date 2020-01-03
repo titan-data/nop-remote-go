@@ -2,7 +2,7 @@ package nop
 
 import (
 	"github.com/stretchr/testify/assert"
-	"github.com/titan-data/remote-sdk-go/pkg/remote"
+	"github.com/titan-data/remote-sdk-go/remote"
 	"net/url"
 	"testing"
 )
@@ -15,7 +15,7 @@ func TestRegistered(t *testing.T) {
 func TestFromURL(t *testing.T) {
 	r := remote.Get("nop")
 	u, _ := url.Parse("nop")
-	props, err := r.FromURL(*u, map[string]string{})
+	props, err := r.FromURL(u, map[string]string{})
 	assert.Equal(t, 0, len(props))
 	assert.Nil(t, err)
 }
@@ -23,14 +23,14 @@ func TestFromURL(t *testing.T) {
 func TestBadAuthority(t *testing.T) {
 	r := remote.Get("nop")
 	u, _ := url.Parse("nop://foo")
-	_, err := r.FromURL(*u, map[string]string{})
+	_, err := r.FromURL(u, map[string]string{})
 	assert.NotNil(t, err)
 }
 
 func TestBadProperty(t *testing.T) {
 	r := remote.Get("nop")
 	u, _ := url.Parse("nop")
-	_, err := r.FromURL(*u, map[string]string{"a": "b"})
+	_, err := r.FromURL(u, map[string]string{"a": "b"})
 	assert.NotNil(t, err)
 }
 
