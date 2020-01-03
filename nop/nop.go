@@ -21,7 +21,7 @@ func (n nopRemote) Type() string {
 func (n nopRemote) FromURL(url url.URL, additionalProperties map[string]string) (map[string]interface{}, error) {
 	// nop remotes can only be "nop", which means everything other than "path" must be empty
 	if url.Scheme != "" || url.Host != "" || url.User != nil || url.Path != "nop" {
-		return nil, errors.New("malformed remote identifier")
+		return nil, errors.New("malformed remote")
 	}
 
 	if len(additionalProperties) != 0 {
